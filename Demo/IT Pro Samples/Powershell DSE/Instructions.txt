@@ -1,0 +1,7 @@
+Ctrl + i to open inline
+
+Introduce a bug by changing a typo
+
+Can you fix the highligthed code
+
+can you add a File server role?

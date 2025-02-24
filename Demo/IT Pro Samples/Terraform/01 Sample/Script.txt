@@ -1,0 +1,16 @@
+Can you help me create a terraform template to deploy a virtual Network in Azure?
+
+Can you explain the selected template? (Main.tf)
+
+Can you add vnet peering configuration to this template
+
+when should I use allow_forwarded_ traffic, allow_gateway_transit, use _remote_gateways
+
+when should I use allow_gateway_transit
+
+when should I use  use_remote_gateways
+
+What is the difference between using use_remote_gateways vs allow_gateway_transit
+
+
+use_remote_gateways and allow_gateway_transit seems very similar, can you provide examples when one should be use instead of the other
