@@ -23,3 +23,14 @@
 
 - [Jupyter Notebook Simple Demo](https://github.com/ps-copilot-sandbox/jupyternotebook-simple-demo)
 - [GitHub Docs: Finding and Understanding Example Code](https://docs.github.com/en/get-started/learning-to-code/finding-and-understanding-example-code)
+
+
+## Additional References
+
+- [How to write better prompts for GitHub Copilot](https://github.blog/developer-skills/github/how-to-write-better-prompts-for-github-copilot/)
+
+- [Copilot cheat sheet](https://github.com/kierunb/CopilotCheatSheet/blob/master/copilot-cheat-sheet-v2.md)
+
+- [Debugging](https://docs.github.com/en/get-started/learning-to-code/learning-to-debug-with-github-copilot)
+  
+- [debugging Visual Studio](https://learn.microsoft.com/en-us/visualstudio/debugger/debug-with-copilot?view=vs-2022)
