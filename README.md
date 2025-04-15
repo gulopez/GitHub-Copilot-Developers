@@ -31,6 +31,6 @@
 
 - [Copilot cheat sheet](https://github.com/kierunb/CopilotCheatSheet/blob/master/copilot-cheat-sheet-v2.md)
 
-- [Debugging](https://docs.github.com/en/get-started/learning-to-code/learning-to-debug-with-github-copilot)
+- [Debugging VSCode ](https://docs.github.com/en/get-started/learning-to-code/learning-to-debug-with-github-copilot)
   
-- [debugging Visual Studio](https://learn.microsoft.com/en-us/visualstudio/debugger/debug-with-copilot?view=vs-2022)
+- [Debugging Visual Studio](https://learn.microsoft.com/en-us/visualstudio/debugger/debug-with-copilot?view=vs-2022)
