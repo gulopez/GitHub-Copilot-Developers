@@ -1,25 +1,6 @@
 # Copilot Training
 
-All Reference material
-
-## Table of Contents
-
-- [Copilot Training](#copilot-training)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Links](#links)
-    - [Javascript](#javascript)
-    - [C#](#c)
-    - [Java](#java)
-    - [JavaScript](#javascript-1)
-    - [Jupyter Notebook](#jupyter-notebook)
-
-## Overview
-
-
-## Links
-
-Workshop.
+## Workshop
 
 ### Javascript
 
