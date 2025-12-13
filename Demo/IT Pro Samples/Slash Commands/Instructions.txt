@@ -3,7 +3,7 @@ Slash Commands
 
 /help
 
-C:\Gustavo\OneDrive - Microsoft\Training\copilot\Workshop - Github Copilot for Business Developer\Demos\IT Pro Samples\Terraform\01 Sample
+\Demos\IT Pro Samples\Terraform\01 Sample
 Select main.tf file in vscode editor
 
 /explain
