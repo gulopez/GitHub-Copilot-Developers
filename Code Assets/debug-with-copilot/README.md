@@ -44,4 +44,4 @@ git clone https://github.com/new2code/debug-with-copilot.git
 
 Instructions located at:
 
-[Learning to Debug with copilot] (https://docs.github.com/en/get-started/learning-to-code/learning-to-debug-with-github-copilot)
+[Learning to Debug with copilot](https://docs.github.com/en/get-started/learning-to-code/learning-to-debug-with-github-copilot)
