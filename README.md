@@ -2,6 +2,14 @@
 
 ## Workshop
 
+### Prompt Demo
+
+[Prompt Engineering Sample Repo](https://github.com/ps-copilot-sandbox/copilot-prompt-engineering)
+
+### Debugging
+
+[Learning to Debug with copilot](https://docs.github.com/en/get-started/learning-to-code/learning-to-debug-with-github-copilot)
+
 ### Javascript
 
 - [Django/React Workshop](https://github.com/githubschool/copilot-custom-workshop-django-react-web)
