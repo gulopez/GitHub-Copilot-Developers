@@ -38,3 +38,11 @@ git clone https://github.com/new2code/debug-with-copilot.git
     ```shell copy
     py FILE-NAME-AND-EXTENSION
     ```
+
+
+### Debugging
+
+Instructions located at:
+
+``` https://docs.github.com/en/get-started/learning-to-code/learning-to-debug-with-github-copilot
+```
