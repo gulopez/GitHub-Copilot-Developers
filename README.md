@@ -42,3 +42,7 @@
 - [Debugging Visual Studio](https://learn.microsoft.com/en-us/visualstudio/debugger/debug-with-copilot?view=vs-2022)
 
 - [GitHub Docs: Finding and Understanding Example Code](https://docs.github.com/en/get-started/learning-to-code/finding-and-understanding-example-code)
+
+- [Copilot sample prompts to use with Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/copilot/copilot-prompts-list?view=azuresql)
+
+- [Creating smart prompts for Azure SQL Copilot](https://www.youtube.com/watch?v=Ex8yvAqYNCs)
