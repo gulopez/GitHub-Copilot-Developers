@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Code Assets",
+    "\\Code Assets\\debug-with-copilot",
+    "\\Demo",
+    "\\Demo\\IT Pro Samples",
+    "\\Demo\\IT Pro Samples\\Powershell DSE"
   ],
-  "SelectedNode": "\\C:\\Users\\gulopez\\Source\\Repos\\GitHub-Copilot-Developers2",
+  "SelectedNode": "\\Demo\\IT Pro Samples\\Powershell DSE\\Instructions.txt",
   "PreviewInSolutionExplorer": false
 }
