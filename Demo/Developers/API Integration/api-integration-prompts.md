@@ -1,10 +1,19 @@
 # Sample Prompts for API & Integration Assistance
 
 ## Draft API Contracts
-- Generate an OpenAPI snippet for this endpoint.
-- Define the request and response schema for user registration.
-- Create an error model for API responses.
-- Document the expected query parameters and headers for this API.
+```markdown
+Generate an OpenAPI snippet for this endpoint.
+```
+
+```markdown
+Define the request and response schema for user registration.
+```
+```markdown
+Create an error model for API responses.
+```
+```markdown
+Document the expected query parameters and headers for this API.
+```
 
 ## Integrate SDKs
 - Add S3 uploads with presigned URLs to this service.
