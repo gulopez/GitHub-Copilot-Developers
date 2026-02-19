@@ -17,10 +17,7 @@ Event ID 4013: The DNS server is waiting for Active Directory Domain Services (A
 Event ID 4004: The DNS server was unable to complete directory service enumeration of zone corp.lan.
 
 ```
-
 Response:
-
------
 
 when hit the token limit
 
@@ -43,7 +40,6 @@ Sample follow up prompt: Give me the powershell that implement these suggestions
 
 Response
 
---------
 ##Example 2:
 
 ```markdown
@@ -61,10 +57,8 @@ Error Messages:
 Full error: STOP 0x0000007E (0xFFFFFFFFC0000005, 0xFFFFF807ABC12345, 0xFFFFF80EABCDEF1234).
 ```
 
-
 Response
 
---------------------
 ##Example 3:
 ```markdown
 Final issue for now:
@@ -90,7 +84,6 @@ Event ID 4231: A request to allocate an ephemeral port number from the global TC
 
 Response:
 
-----------------
 ```markdown
 Sample follow up prompt:Create a powershell script that give me this info: (copy from response)  Check IP configuration.....
 ```
