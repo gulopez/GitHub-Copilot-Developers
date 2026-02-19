@@ -1,6 +1,6 @@
 # Sample Prompts for troubleshooting scenarios
 
-##Example 1:
+## Example 1:
 
 ```markdown
 Help me solve this problem, please 
@@ -40,7 +40,7 @@ Sample follow up prompt: Give me the powershell that implement these suggestions
 
 Response
 
-##Example 2:
+## Example 2:
 
 ```markdown
 New ticket; please help me resolve:
@@ -59,7 +59,7 @@ Full error: STOP 0x0000007E (0xFFFFFFFFC0000005, 0xFFFFF807ABC12345, 0xFFFFF80EA
 
 Response
 
-##Example 3:
+## Example 3:
 ```markdown
 Final issue for now:
 Windows Server Networking
