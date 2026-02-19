@@ -1,17 +1,22 @@
-Slide 8: Open Visual Code open folder with sample files
-Slash Commands
+# Sample Prompts for working with Infrastruture as Code scenarios
 
-/help
+1. **Open main.tf file**
 
-\Demos\IT Pro Samples\Terraform\01 Sample
-Select main.tf file in vscode editor
-
+```markdown
 /explain
-
+```
+```markdown
 Can you add vnet peering example
-
+```
+```markdown
 /explain allow_forwarded_traffic
+```
+```markdown
 /explain allow_gateway_transit
+```
+```markdown
 /explain  use_remote_gateways
-
+```
+```markdown
 When should I use allow_gateway_transit vs use_remote_gateways
+```
