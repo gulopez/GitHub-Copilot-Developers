@@ -1,6 +1,6 @@
 # Sample Prompts for working with Infrastruture as Code scenarios
 
-1. **Open main.tf file**
+1. **Open \Terraform\01 Sample\main.tf file**
 
 ```markdown
 /explain
