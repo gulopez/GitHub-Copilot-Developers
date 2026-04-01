@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoleMate – Premium Footwear</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">👟 <span>Sole</span>Mate</a>
+      <nav>
+        <a href="index.html" class="active">Shop</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-link">
+          🛒 Cart
+          <span id="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Hero ────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <h1>Step Into <span>Style</span></h1>
+    <p>Handpicked footwear for every occasion — running, casual, trail, and court.</p>
+    <a href="#products" class="btn btn-primary">Shop Now</a>
+  </section>
+
+  <!-- ── Toolbar ─────────────────────────────────────────────────────── -->
+  <div class="toolbar" id="products">
+    <div class="filter-group" id="filter-btns">
+      <button class="filter-btn active" data-category="All">All</button>
+      <button class="filter-btn" data-category="Running">Running</button>
+      <button class="filter-btn" data-category="Casual">Casual</button>
+      <button class="filter-btn" data-category="Trail">Trail</button>
+      <button class="filter-btn" data-category="Court">Court</button>
+    </div>
+    <div>
+      <select class="sort-select" id="sort-select">
+        <option value="default">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ── Product Grid ─────────────────────────────────────────────────── -->
+  <h2 class="section-title" id="grid-heading">All Shoes</h2>
+  <div class="product-grid" id="product-grid"></div>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────── -->
+  <footer>
+    <p>&copy; 2024 SoleMate. Built with ❤️ | <a href="cart.html">View Cart</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    let activeCategory = "All";
+    let activeSort = "default";
+
+    function getFilteredProducts() {
+      let list = activeCategory === "All"
+        ? [...products]
+        : products.filter(p => p.category === activeCategory);
+
+      if (activeSort === "price-asc")  list.sort((a, b) => a.price - b.price);
+      if (activeSort === "price-desc") list.sort((a, b) => b.price - a.price);
+      if (activeSort === "rating")     list.sort((a, b) => b.rating - a.rating);
+      return list;
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById("product-grid");
+      const heading = document.getElementById("grid-heading");
+      const list = getFilteredProducts();
+      heading.textContent = activeCategory === "All" ? "All Shoes" : activeCategory + " Shoes";
+
+      if (list.length === 0) {
+        grid.innerHTML = '<p style="padding:2rem;color:var(--muted)">No products found.</p>';
+        return;
+      }
+
+      grid.innerHTML = list.map(p => `
+        <div class="product-card">
+          <a href="product.html?id=${p.id}" class="product-img-wrap">
+            <img src="${p.image}" alt="${p.name}" loading="lazy" />
+            <span class="badge">${p.category}</span>
+          </a>
+          <div class="product-body">
+            <div class="product-brand">${p.brand}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-meta">
+              <div class="product-price">$${p.price.toFixed(2)}</div>
+              <div class="product-rating">
+                ${renderStars(p.rating)}
+                <span>(${p.reviews})</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="product.html?id=${p.id}" class="btn btn-outline">View</a>
+            <button class="btn btn-primary" onclick="quickAdd(${p.id})">Add to Cart</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function quickAdd(productId) {
+      const p = products.find(x => x.id === productId);
+      addToCart(productId, p.sizes[2], p.colors[0], 1);
+      showToast(`${p.name} added to cart!`);
+    }
+
+    // Filter buttons
+    document.getElementById("filter-btns").addEventListener("click", e => {
+      const btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCategory = btn.dataset.category;
+      renderGrid();
+    });
+
+    // Sort select
+    document.getElementById("sort-select").addEventListener("change", e => {
+      activeSort = e.target.value;
+      renderGrid();
+    });
+
+    renderGrid();
+  </script>
+
+</body>
+</html>
