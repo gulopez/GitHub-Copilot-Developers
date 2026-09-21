@@ -1,0 +1,11 @@
+Number,Epic,User Story,Tasks
+1,User Authentication,"As a user, I want to securely sign in so I can access my tickets.","Registration and login; password reset; role-based access; session management"
+2,Ticket Creation,"As a customer, I want to submit a support ticket so I can request assistance.","Create submission form; add categories and priorities; support attachments; validate fields"
+3,Ticket Management,"As an agent, I want to update tickets so their progress is accurately tracked.","Add status transitions; edit details; record history; add internal notes"
+4,Ticket Assignment,"As a manager, I want to assign tickets to agents so work is distributed effectively.","Manual assignment; automatic assignment rules; reassignment; workload view"
+5,Search and Filtering,"As an agent, I want to find relevant tickets quickly so I can respond efficiently.","Keyword search; filters; sorting and pagination; saved searches"
+6,Comments and Communication,"As a customer, I want to communicate with agents within my ticket.","Threaded comments; reply attachments; public and internal replies; author timestamps"
+7,Notifications,"As a user, I want notifications about ticket changes so I remain informed.","Email notifications; in-app notifications; user preferences; event triggers"
+8,SLA Management,"As a manager, I want SLA tracking so tickets are resolved within agreed timelines.","Configure policies; calculate deadlines; display warnings; escalate breaches"
+9,Reporting and Analytics,"As a manager, I want support metrics so I can evaluate team performance.","Create dashboards; track response and resolution times; report ticket volumes; export CSV"
+10,Knowledge Base,"As a customer, I want to find answers before opening a ticket so I can resolve common issues independently.","Manage articles; add search and categories; suggest articles; collect usefulness ratings"
