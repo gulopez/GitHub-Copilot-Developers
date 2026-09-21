@@ -1,3 +1,4 @@
 {
+    "codeQL.githubDatabase.download": "never",
     "java.compile.nullAnalysis.mode": "automatic"
 }
