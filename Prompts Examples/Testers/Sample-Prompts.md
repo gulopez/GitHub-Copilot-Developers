@@ -23,6 +23,31 @@ Generate runnable tests for this class in one response. Include setup, test data
 ```markdown
 Write a table-driven or parameterized test suite for the selected function. Include representative normal, boundary, empty, null, and malformed inputs where applicable.
 ```
+```markdown
+Write me unit tests for all of the operations in my calculator.js file.
+
+Use the following example: test('adds 1 + 2 to equal 3', () => { expect(calculate(1, 2, '+')).toBe(3); });
+```
+
+## Generate a Test from an Example Pattern
+````markdown
+Generate a unit test for `[function or behavior]` using the project's existing test framework. Follow the structure, naming style, and Arrange-Act-Assert pattern shown in this example:
+
+```javascript
+test("returns the total for valid items", () => {
+	// Arrange
+	const items = [{ price: 10 }, { price: 15 }];
+
+	// Act
+	const result = calculateTotal(items);
+
+	// Assert
+	expect(result).toBe(25);
+});
+```
+
+Adapt the test name, setup data, function call, and assertions to the selected code. Preserve the example's organization, but do not copy its business logic or values unless they apply. Generate one happy-path case and one edge case.
+````
 
 ## Generate Tests from Comments
 Add a behavior comment such as the following above a function or in a test file:
