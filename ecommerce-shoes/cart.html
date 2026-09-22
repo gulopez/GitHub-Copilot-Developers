@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart – SoleMate</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">👟 <span>Sole</span>Mate</a>
+      <nav>
+        <a href="index.html">Shop</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-link active">
+          🛒 Cart
+          <span id="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Cart Page ────────────────────────────────────────────────────── -->
+  <main class="cart-page" id="cart-root">
+    <h1>Your Cart</h1>
+    <div id="cart-content"></div>
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────── -->
+  <footer>
+    <p>&copy; 2024 SoleMate. Built with ❤️ | <a href="index.html">Continue Shopping</a></p>
+  </footer>
+
+  <!-- ── Checkout Modal ───────────────────────────────────────────────── -->
+  <div id="checkout-overlay" class="hidden" style="
+    position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;
+    display:flex;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:8px;padding:2rem;max-width:420px;width:90%;text-align:center;">
+      <div style="font-size:3rem">✅</div>
+      <h2 style="margin:.75rem 0 .5rem;font-size:1.4rem">Order Placed!</h2>
+      <p style="color:var(--muted);font-size:.9rem">Thank you for your purchase. Your shoes are on their way!</p>
+      <a href="index.html" class="btn btn-primary" style="margin-top:1.25rem;display:inline-flex" id="close-modal">
+        Continue Shopping
+      </a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    function renderCart() {
+      const cartRoot = document.getElementById("cart-root");
+      const content  = document.getElementById("cart-content");
+      const cart = getCart();
+
+      if (cart.length === 0) {
+        content.innerHTML = `
+          <div class="empty-cart">
+            <div class="icon">🛒</div>
+            <p>Your cart is empty.</p>
+            <a href="index.html" class="btn btn-primary">Start Shopping</a>
+          </div>`;
+        return;
+      }
+
+      const subtotal  = getCartTotal();
+      const shipping  = subtotal > 100 ? 0 : 9.99;
+      const tax       = subtotal * 0.08;
+      const total     = subtotal + shipping + tax;
+
+      const itemsHtml = cart.map(item => {
+        const p = products.find(x => x.id === item.productId);
+        if (!p) return "";
+        return `
+          <div class="cart-item" data-id="${p.id}" data-size="${item.size}" data-color="${item.color}">
+            <img src="${p.image}" alt="${p.name}" />
+            <div class="cart-item-info">
+              <div class="cart-item-name">${p.name}</div>
+              <div class="cart-item-meta">Size ${item.size} · ${item.color}</div>
+              <div class="cart-item-price">$${(p.price * item.quantity).toFixed(2)}</div>
+              <div class="cart-item-controls">
+                <button class="qty-btn" data-action="dec">−</button>
+                <span>${item.quantity}</span>
+                <button class="qty-btn" data-action="inc">+</button>
+              </div>
+            </div>
+            <button class="remove-btn" title="Remove">✕</button>
+          </div>
+        `;
+      }).join("");
+
+      content.innerHTML = `
+        <div class="cart-items">${itemsHtml}</div>
+        <aside class="cart-summary">
+          <h2>Order Summary</h2>
+          <div class="summary-row"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
+          <div class="summary-row"><span>Shipping</span><span>${shipping === 0 ? "FREE" : "$" + shipping.toFixed(2)}</span></div>
+          <div class="summary-row"><span>Tax (8%)</span><span>$${tax.toFixed(2)}</span></div>
+          <div class="summary-row total"><span>Total</span><span>$${total.toFixed(2)}</span></div>
+          ${shipping > 0 ? `<p style="font-size:.78rem;color:var(--muted);margin-top:.5rem">Add $${(100 - subtotal).toFixed(2)} more for free shipping!</p>` : '<p style="font-size:.78rem;color:#2e7d32;margin-top:.5rem">🎉 You qualify for free shipping!</p>'}
+          <button class="btn btn-primary" id="checkout-btn">Checkout →</button>
+          <a href="index.html" class="btn btn-outline" style="margin-top:.5rem;display:flex;justify-content:center">Continue Shopping</a>
+        </aside>
+      `;
+
+      // Quantity & remove handlers
+      content.querySelectorAll(".cart-item").forEach(row => {
+        const id    = parseInt(row.dataset.id, 10);
+        const size  = parseInt(row.dataset.size, 10);
+        const color = row.dataset.color;
+
+        row.querySelector("[data-action='inc']").addEventListener("click", () => {
+          const item = getCart().find(i => i.productId === id && i.size === size && i.color === color);
+          if (item) { updateQuantity(id, size, color, item.quantity + 1); renderCart(); }
+        });
+        row.querySelector("[data-action='dec']").addEventListener("click", () => {
+          const item = getCart().find(i => i.productId === id && i.size === size && i.color === color);
+          if (item) { updateQuantity(id, size, color, item.quantity - 1); renderCart(); }
+        });
+        row.querySelector(".remove-btn").addEventListener("click", () => {
+          removeFromCart(id, size, color);
+          showToast("Item removed from cart.", "error");
+          renderCart();
+        });
+      });
+
+      document.getElementById("checkout-btn").addEventListener("click", () => {
+        saveCart([]);
+        document.getElementById("checkout-overlay").classList.remove("hidden");
+        document.getElementById("checkout-overlay").style.display = "flex";
+      });
+    }
+
+    document.getElementById("close-modal").addEventListener("click", () => {
+      location.href = "index.html";
+    });
+
+    renderCart();
+  </script>
+
+</body>
+</html>

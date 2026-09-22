@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product – SoleMate</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">👟 <span>Sole</span>Mate</a>
+      <nav>
+        <a href="index.html">Shop</a>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-link">
+          🛒 Cart
+          <span id="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Breadcrumb ───────────────────────────────────────────────────── -->
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>/</span>
+    <span id="bc-product">Product</span>
+  </nav>
+
+  <!-- ── Product Detail ───────────────────────────────────────────────── -->
+  <section class="product-detail" id="product-detail">
+    <p style="grid-column:1/-1;color:var(--muted);padding:3rem 0">Loading product…</p>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────── -->
+  <footer>
+    <p>&copy; 2024 SoleMate. Built with ❤️ | <a href="cart.html">View Cart</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const productId = parseInt(params.get("id"), 10);
+    const product = products.find(p => p.id === productId);
+
+    const section = document.getElementById("product-detail");
+
+    if (!product) {
+      section.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:4rem 0">
+          <p style="font-size:1.2rem;color:var(--muted)">Product not found.</p>
+          <a href="index.html" class="btn btn-primary" style="margin-top:1rem;display:inline-flex">← Back to Shop</a>
+        </div>`;
+    } else {
+      document.title = `${product.name} – SoleMate`;
+      document.getElementById("bc-product").textContent = product.name;
+
+      let selectedSize  = product.sizes[2];
+      let selectedColor = product.colors[0];
+      let quantity = 1;
+
+      section.innerHTML = `
+        <div class="detail-img">
+          <img src="${product.image}" alt="${product.name}" />
+        </div>
+        <div class="detail-info">
+          <div class="detail-brand">${product.brand} · ${product.category}</div>
+          <h1 class="detail-name">${product.name}</h1>
+          <div class="detail-rating">
+            ${renderStars(product.rating)}
+            <span>${product.rating} (${product.reviews} reviews)</span>
+          </div>
+          <div class="detail-price">$${product.price.toFixed(2)}</div>
+          <p class="detail-description">${product.description}</p>
+
+          <div>
+            <div class="option-label">Size: <span id="size-label">${selectedSize}</span></div>
+            <div class="size-grid" id="size-grid">
+              ${product.sizes.map(s => `
+                <button class="size-btn${s === selectedSize ? ' selected' : ''}" data-size="${s}">${s}</button>
+              `).join("")}
+            </div>
+          </div>
+
+          <div>
+            <div class="option-label">Color: <span id="color-label">${selectedColor}</span></div>
+            <div class="color-grid" id="color-grid">
+              ${product.colors.map(c => `
+                <button class="color-btn${c === selectedColor ? ' selected' : ''}" data-color="${c}">${c}</button>
+              `).join("")}
+            </div>
+          </div>
+
+          <div>
+            <div class="option-label">Quantity</div>
+            <div class="qty-row">
+              <button class="qty-btn" id="qty-minus">−</button>
+              <span id="qty-display">${quantity}</span>
+              <button class="qty-btn" id="qty-plus">+</button>
+            </div>
+          </div>
+
+          <div class="detail-actions">
+            <button class="btn btn-primary" id="add-cart-btn">🛒 Add to Cart</button>
+            <a href="index.html" class="btn btn-outline">← Back</a>
+          </div>
+        </div>
+      `;
+
+      // Size selection
+      document.getElementById("size-grid").addEventListener("click", e => {
+        const btn = e.target.closest(".size-btn");
+        if (!btn) return;
+        document.querySelectorAll(".size-btn").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        selectedSize = parseInt(btn.dataset.size, 10);
+        document.getElementById("size-label").textContent = selectedSize;
+      });
+
+      // Color selection
+      document.getElementById("color-grid").addEventListener("click", e => {
+        const btn = e.target.closest(".color-btn");
+        if (!btn) return;
+        document.querySelectorAll(".color-btn").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        selectedColor = btn.dataset.color;
+        document.getElementById("color-label").textContent = selectedColor;
+      });
+
+      // Quantity
+      document.getElementById("qty-minus").addEventListener("click", () => {
+        if (quantity > 1) { quantity--; document.getElementById("qty-display").textContent = quantity; }
+      });
+      document.getElementById("qty-plus").addEventListener("click", () => {
+        quantity++;
+        document.getElementById("qty-display").textContent = quantity;
+      });
+
+      // Add to cart
+      document.getElementById("add-cart-btn").addEventListener("click", () => {
+        addToCart(product.id, selectedSize, selectedColor, quantity);
+        showToast(`${product.name} (Size ${selectedSize}) added to cart!`);
+      });
+    }
+  </script>
+
+</body>
+</html>
